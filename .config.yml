@@ -1,0 +1,18 @@
+---
+repos:
+  - name: chef/chefworkstation:stable
+    type: docker
+    interval: 15m
+    authconfig:
+      username: myDockerhubName
+      password: ${env:::DOCKERHUB_TOKEN}
+    webhooks:
+      - url: https://api.github.com/repos/bdwyertech/release-notifier/actions/workflows/go.yml/dispatches
+        method: POST
+        body: |-
+          {
+            "ref": "main"
+          }
+        headers:
+          Accept: application/vnd.github.v3+json
+          Authorization: token ${env:::GITHUB_API_KEY}
