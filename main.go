@@ -63,7 +63,7 @@ func main() {
 	}
 
 	for _, repo := range config.Repos {
-		go func() {
+		go func(repo *Repo) {
 			for {
 				ver, err := repo.Check()
 				if err != nil {
@@ -85,7 +85,7 @@ func main() {
 					hook.Run()
 				}
 			}
-		}()
+		}(repo)
 	}
 
 	c := make(chan os.Signal, 1)
