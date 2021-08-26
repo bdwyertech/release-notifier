@@ -48,6 +48,7 @@ jobs:
             latest=true
           tags: |
             type=sha,enable=true,priority=100,prefix=${{ steps.date.outputs.date }}--,suffix=,format=short
+            type=ref,enable=true,priority=200,prefix=,suffix=,event=tag
 
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v1
