@@ -48,7 +48,7 @@ func main() {
 			log.Fatal(err)
 		}
 
-		configPath = filepath.Join(pwd, ".config.yml")
+		configPath = filepath.Join(pwd, ".release-notifier.yml")
 	}
 
 	yamlFile, err := RenderConfig(configPath)
