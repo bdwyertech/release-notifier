@@ -8,6 +8,7 @@
 package main
 
 import (
+	"strings"
 	"time"
 
 	log "github.com/sirupsen/logrus"
@@ -41,9 +42,10 @@ func (r *Repo) Check() (version string, err error) {
 		}
 	}
 
-	if r.Type == "docker" {
+	switch strings.ToLower(r.Type) {
+	case "docker":
 		return r.GetLatestDockerRelease(), nil
-	} else {
+	default:
 		return r.GetLatestGithubRelease(), nil
 	}
 }
